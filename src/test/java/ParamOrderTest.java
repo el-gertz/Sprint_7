@@ -1,10 +1,11 @@
+import io.qameta.allure.Description;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import praktikum.dto.Order;
 import praktikum.api.OrderAPI;
+import praktikum.dto.Order;
 
 import java.net.HttpURLConnection;
 import java.util.List;
@@ -21,7 +22,7 @@ public class ParamOrderTest {
     }
 
     @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
-    public static Object[][] CreateOrderParams() {
+    public static Object[][] createOrderParams() {
         return new Object[][]{
                 {List.of("BLACK")},
                 {List.of("GREY")},
@@ -38,6 +39,7 @@ public class ParamOrderTest {
     }
 
     @Test
+    @Description("Успешное создание заказа")
     public void createOrder() {
         Order order = new Order("Ivan", "Ivanov", "Street",
                 4, "+7 800 355 35 35", 5,

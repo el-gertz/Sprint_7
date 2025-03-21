@@ -1,9 +1,10 @@
+import io.qameta.allure.Description;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import praktikum.dto.Order;
 import praktikum.api.OrderAPI;
+import praktikum.dto.Order;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
@@ -37,7 +38,8 @@ public class GetOrdersTest {
     }
 
     @Test
-    public void createOrder() {
+    @Description("Получение списка заказов")
+    public void getOrders() {
         List<String> response = apiOrder.getOrders().extract().path("orders");
 
         Assert.assertFalse("Unexpected track in response", response.isEmpty());

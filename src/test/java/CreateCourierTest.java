@@ -1,8 +1,9 @@
+import io.qameta.allure.Description;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import praktikum.dto.Courier;
 import praktikum.api.CourierAPI;
+import praktikum.dto.Courier;
 import praktikum.dto.Credentials;
 
 import java.net.HttpURLConnection;
@@ -36,6 +37,7 @@ public class CreateCourierTest {
     }
 
     @Test
+    @Description("Успешное создание курьера")
     public void createCourier() {
         Courier courier = Courier.random();
 
@@ -50,6 +52,7 @@ public class CreateCourierTest {
     }
 
     @Test
+    @Description("Создание курьера с существующим логином")
     public void duplicatedCourier() {
         String response = api.create(duplicatedCourier).assertThat().statusCode(HttpURLConnection.HTTP_CONFLICT).extract().path("message");
 
@@ -57,6 +60,7 @@ public class CreateCourierTest {
     }
 
     @Test
+    @Description("Создание курьера без поля password")
     public void oneFieldIsNullCreation() {
         Courier courier = new Courier("ops", null, "john");
         String response = api.create(courier).assertThat().statusCode(HttpURLConnection.HTTP_BAD_REQUEST).extract().path("message");
