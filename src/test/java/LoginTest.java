@@ -21,6 +21,7 @@ public class LoginTest {
 
     @After
     public void clearTestData() {
+        courierId = api.login(Credentials.fromCourier(courier)).extract().path("id");
         if (courierId > 0) {
             api.delete(courierId).assertThat().statusCode(HttpURLConnection.HTTP_OK);
         }
